@@ -1,6 +1,9 @@
-
+//
+// Created by Michał on 11.12.2017.
+//
 #include <iostream>
 #include "Storehouse.h"
+#include "Types.h"
 
 ElementID Storehouse::get_id() const {
     return id;

@@ -1,4 +1,6 @@
-
+//
+// Created by Michał on 09.01.2018.
+//
 
 #include <time.h>
 #include <iostream>

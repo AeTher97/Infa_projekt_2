@@ -4,6 +4,8 @@
 #include "Enums.h"
 #include "Storehouse.h"
 #include "Factory.h"
+#include "Types.h"
+
 int main() {
     TimeOffset time(2);
     ElementID id;
@@ -16,18 +18,18 @@ int main() {
 
     Storehouse storehouse(id3);
     Package aPackage(id2);
-    Worker worker(id,time,&queue);                 //jakies tam przykladowe linijki
+    Worker worker(id,time,&queue);
     worker.receiver_preferences.add_receiver(&storehouse);
     worker.receive_package(aPackage);
     worker.do_work();
     worker.receive_package(aPackage);
     for(auto item : worker.view_queue())
-        std::cout<< item.get_id().string()<<std::endl;
+        std::cout<<item.get_id().get_id()<<std::endl;
 
     Factory factory;
     factory.add_worker(worker);
     factory.add_storehouse(storehouse);
-    std::cout<< factory.get_workers().front().get_id().string();
+    std::cout<<factory.get_workers().front().get_id().get_id();
     factory.remove_worker(id);
 
     std::cout<<std::endl<<factory.get_workers().empty();

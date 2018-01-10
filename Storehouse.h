@@ -1,3 +1,6 @@
+//
+// Created by Michał on 11.12.2017.
+//
 
 #include <string>
 #include <vector>
@@ -6,11 +9,12 @@
 
 #ifndef PROJEKT_NA_INFORMATYKE_STOREHOUSE_H
 #define PROJEKT_NA_INFORMATYKE_STOREHOUSE_H
+#include <list>
 
 
 class Storehouse : public IPackageReceiver{
 private:
-    std::vector<Package> packages;
+    std::list<Package> packages;
     ReceiverType reciever_type;
     IPackageDepot* packageDepot;
     ElementID id;

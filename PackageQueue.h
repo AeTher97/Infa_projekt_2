@@ -1,4 +1,6 @@
-
+//
+// Created by Michał on 09.01.2018.
+//
 
 #ifndef PROJEKT_NA_INFORMATYKE_PACKAGEQUEUE_H
 #define PROJEKT_NA_INFORMATYKE_PACKAGEQUEUE_H
@@ -6,7 +8,7 @@
 #include <deque>
 #include <functional>
 #include <vector>
-#include "Package.h"
+#include "Types.h"
 #include "Enums.h"
 #include "IPackageQueue.h"
 

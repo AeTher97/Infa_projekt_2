@@ -1,9 +1,10 @@
-
+//
+// Created by Michał on 11.12.2017.
+//
 #include <string>
 #include <vector>
-#include "ElementID.h"
+#include "Types.h"
 #include "Time.h"
-#include "TimeOffset.h"
 #include "PackageSender.h"
 
 #ifndef PROJEKT_NA_INFORMATYKE_RAMP_H

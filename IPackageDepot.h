@@ -1,6 +1,8 @@
-
+//
+// Created by Michał on 09.01.2018.
+//
 #include <vector>
-#include "Package.h"
+#include "Types.h"
 
 #ifndef PROJEKT_NA_INFORMATYKE_I_PACKAGE_DEPOT_H
 #define PROJEKT_NA_INFORMATYKE_I_PACKAGE_DEPOT_H

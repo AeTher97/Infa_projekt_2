@@ -1,7 +1,10 @@
-
+        //
+// Created by Michał on 09.01.2018.
+//
 #include "ReceiverPreferences.h"
-#include "Package.h"
+#include "Types.h"
 #include <vector>
+#include <list>
 
 #ifndef PROJEKT_NA_INFORMATYKE_PACKAGE_SENDER_H
 #define PROJEKT_NA_INFORMATYKE_PACKAGE_SENDER_H
@@ -10,7 +13,7 @@
 class PackageSender {
 private:
 
-    std::vector<Package> sending_buffer;
+    std::list<Package> sending_buffer;
 
 public:
     ReceiverPreferences receiver_preferences;

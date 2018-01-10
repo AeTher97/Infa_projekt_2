@@ -1,9 +1,10 @@
-
+//
+// Created by Michał on 11.12.2017.
+//
 #include <vector>
 
 
-#include "ElementID.h"
-#include "TimeOffset.h"
+#include "Types.h"
 #include "Time.h"
 #include "IPackageQueue.h"
 #include "IPackageReceiver.h"
@@ -19,7 +20,7 @@ private:
     TimeOffset processing_duration;
     Time package_processing__start_time;
     IPackageQueue* queue;
-    std::vector<Package> currently_processed_package;
+    std::list<Package> currently_processed_package;
     ReceiverType type;
 public:
     Worker(ElementID,TimeOffset,IPackageQueue*);
