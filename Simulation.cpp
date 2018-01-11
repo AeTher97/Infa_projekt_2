@@ -22,37 +22,37 @@ Factory load_factory_structure(std::string path) {
         std::cout<<"opened file";
         while (file.good()) {
             getline(file, string);
-            std::cout<<string<<std::endl;
-            type=string.get_type();
-            if(type == RAMP_NODE)
-            {
-                Ramp ramp = Ramp(string.get_id(),string.get_delivery_interval());
-                factory.add_ramp(ramp);
+            if(string.front()!=';'){
+                std::cout<<string<<std::endl;
+                type=string.get_type();
+                if(type == RAMP_NODE)
+                {
+                    Ramp ramp = Ramp(string.get_id(),string.get_delivery_interval());
+                    factory.add_ramp(ramp);
 
-            }
-            if(type == WORKER_NODE)
-            {
-                PackageQueue* queue =  new PackageQueue(string.get_queue_type());
-                Worker worker =   Worker(string.get_id(),string.get_processing_time(),queue);
-                factory.add_worker(worker);
-            }
-
-            if(type == STORAGE_NODE)
-            {
-                PackageDepot * depot = new PackageDepot();
-                Storehouse storehouse = Storehouse(string.get_id(),depot);
-                factory.add_storehouse(storehouse);
-            }
-            if(type == LINK_NODE)
-            {
-                double p = string.get_probability();
-                if(p!=0) {
-                    factory.find_sender(string.get_source())->receiver_preferences.add_receiver_with_probability(
-                            factory.find_receiver(string.get_destination()), p);
                 }
-                else
-                    factory.find_sender(string.get_source())->receiver_preferences.add_receiver(factory.find_receiver(string.get_destination()));
+                if(type == WORKER_NODE)
+                {
+                    PackageQueue* queue =  new PackageQueue(string.get_queue_type());
+                    Worker worker =   Worker(string.get_id(),string.get_processing_time(),queue);
+                    factory.add_worker(worker);
+                }
 
+                if(type == STORAGE_NODE)
+                {
+                    PackageDepot * depot = new PackageDepot();
+                    Storehouse storehouse = Storehouse(string.get_id(),depot);
+                    factory.add_storehouse(storehouse);
+                }
+                if(type == LINK_NODE) {
+                    double p = string.get_probability();
+                    if (p != 0) {
+                        factory.find_sender(string.get_source())->receiver_preferences.add_receiver_with_probability(
+                                factory.find_receiver(string.get_destination()), p);
+                    } else
+                        factory.find_sender(string.get_source())->receiver_preferences.add_receiver(
+                                factory.find_receiver(string.get_destination()));
+            }
             }
         }
     }

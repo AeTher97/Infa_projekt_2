@@ -9,11 +9,11 @@
 NodeType MyString::get_type() {
     if(this->find("LOADING_RAMP")!=std::string::npos)
         return RAMP_NODE;
-    if(this->find("WORKER")!=std::string::npos && this->find("WORKERS")==std::string::npos)
+    if(this->find("WORKER")!=std::string::npos)
         return WORKER_NODE;
-    if(this->find("STOREHOUSE")!=std::string::npos && this->find("STOREHOUSES")==std::string::npos)
+    if(this->find("STOREHOUSE")!=std::string::npos)
         return STORAGE_NODE;
-    if(this->find("LINK")!=std::string::npos && this->find("LINKS")==std::string::npos)
+    if(this->find("LINK")!=std::string::npos)
         return LINK_NODE;
     return EMPTY;
 }

@@ -82,7 +82,6 @@ QueueType Worker::typ() {
 
 Worker::~Worker() {
 delete(queue);
-    std::cout <<"chuj wie dlaczego ale sie niszczy"<<std::endl;
 
 }
 
