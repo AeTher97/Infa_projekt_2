@@ -5,7 +5,7 @@
 #include "PackageQueue.h"
 
 PackageQueue::PackageQueue(QueueType type) {
-queue_type=type;
+    queue_type=type;
 }
 
 
@@ -31,10 +31,9 @@ QueueType PackageQueue::get_queue_type() {
     return queue_type;
 }
 
-Package PackageQueue::view() const {
-    return deque.front();
-}
-
-std::deque<Package> PackageQueue::view2() const {
-    return deque;
+std::vector<Package> PackageQueue::view() const {
+    std::vector<Package> list;
+    for(auto element : deque)
+        list.push_back(element);
+    return list;
 }

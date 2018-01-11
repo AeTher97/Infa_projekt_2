@@ -28,7 +28,10 @@ void ReceiverPreferences::add_receiver_with_probability(IPackageReceiver* new_el
     {
         element.second = (1-new_probability)*element.second;
     }
-    probabilities.insert(std::make_pair(new_element,new_probability));
+    if(probabilities.empty())
+        probabilities.insert(std::make_pair(new_element,1));
+    else
+        probabilities.insert(std::make_pair(new_element,new_probability));
 }
 
 void ReceiverPreferences::remove_receiver(IPackageReceiver * to_delete) {
@@ -57,7 +60,14 @@ IPackageReceiver *ReceiverPreferences::draw_receiver() {
 
 void ReceiverPreferences::print() {
     for(auto element : probabilities)
-        std::cout << element.first << " " << element.second<<std::endl;
+        std::cout << element.first->get_id().string() << " " << element.second<<std::endl;
 
 
+}
+
+std::vector<std::pair<IPackageReceiver *, double>> ReceiverPreferences::view() {
+    std::vector<std::pair<IPackageReceiver *, double>> list;
+    for(auto element : probabilities)
+        list.push_back(element);
+    return list;
 }

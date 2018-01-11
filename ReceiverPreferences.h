@@ -6,6 +6,7 @@
 #define PROJEKT_NA_INFORMATYKE_RECEIVER_PREFERENCES_H
 
 #include <map>
+#include <vector>
 #include "IPackageReceiver.h"
 
 
@@ -19,7 +20,7 @@ public:
     void add_receiver_with_probability(IPackageReceiver*, double);
     void remove_receiver(IPackageReceiver*);
     IPackageReceiver* draw_receiver();
-    std::pair<IPackageReceiver*,double> view();
+    std::vector<std::pair<IPackageReceiver*,double>> view();
     void print();
 };
 

@@ -31,10 +31,10 @@ public:
     virtual void push(Package);
     virtual bool empty()const;
     virtual int size()const;
-    virtual Package view()const ;
+    virtual std::vector<Package> view()const ;
     virtual Package pop();
     virtual QueueType get_queue_type();
-    virtual std::deque<Package> view2() const;
+
 
 };
 

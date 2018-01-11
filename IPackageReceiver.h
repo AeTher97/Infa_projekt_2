@@ -11,9 +11,9 @@
 class IPackageReceiver{
 public:
     virtual void receive_package(Package) =0;
-    virtual Package view_depot() const = 0;
     virtual ReceiverType get_receiver_type()const =0;
     virtual ElementID get_id() const=0;
+    virtual std::vector<Package> view_depot()const=0;
 };
 
 #endif //PROJEKT_NA_INFORMATYKE_IPACKAGERECEIVER_H

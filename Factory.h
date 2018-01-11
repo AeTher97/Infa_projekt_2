@@ -23,14 +23,19 @@ public:
     std::list<Ramp>& get_ramps();
     void add_ramp(Ramp);
     void remove_ramp(ElementID);
+    Ramp* find_ramp(ElementID)  ;
 
     std::list<Worker>& get_workers();
-    void add_worker(Worker);
+    void add_worker(Worker&);
     void remove_worker(ElementID);
+    Worker* find_worker(ElementID)  ;
 
     std::list<Storehouse>& get_storehouses();
     void add_storehouse(Storehouse);
     void remove_storehouse(ElementID);
+    Storehouse* find_storehouse(ElementID)  ;
+    IPackageReceiver * find_receiver(ElementID);
+    PackageSender * find_sender(ElementID);
 
     bool isConsistent();
 

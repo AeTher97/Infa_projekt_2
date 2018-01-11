@@ -15,5 +15,24 @@ enum QueueType{
     FIFO
 };
 
+enum NodeType{
+    RAMP_NODE,
+    WORKER_NODE,
+    STORAGE_NODE,
+    LINK_NODE,
+    EMPTY
+};
+
+enum SearchType{
+    ID,
+    DELIVERY_INTERVAL,
+    NODE_TYPE,
+    PROCESSING_TIME,
+    QUEUE_TYPE,
+    SOURCE,
+    DESTINATION,
+    PROBABILITY
+};
+
 
 #endif //PROJEKT_NA_INFORMATYKE_ENUMS_H

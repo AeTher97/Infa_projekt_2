@@ -13,13 +13,14 @@
 class PackageSender {
 private:
 
-    std::list<Package> sending_buffer;
+
 
 public:
+    std::list<Package> sending_buffer;
     ReceiverPreferences receiver_preferences;
     void send_package();
     void add_to_buffer(Package);
-    Package view_sending_buffer();
+    std::vector<Package> view_sending_buffer();
 };
 
 

@@ -20,20 +20,20 @@ private:
     TimeOffset processing_duration;
     Time package_processing__start_time;
     IPackageQueue* queue;
-    std::list<Package> currently_processed_package;
+    std::vector<Package> currently_processed_package;
     ReceiverType type;
 public:
     Worker(ElementID,TimeOffset,IPackageQueue*);
+    ~Worker();
     virtual void receive_package(Package);
-    void do_work();
+    void do_work(Time);
     TimeOffset get_processing_duration()const;
     Time get_package_processing_start_time();
+    void set_package_processing_start_time(int a);
     virtual ReceiverType get_receiver_type()const ;
     virtual ElementID get_id()const;
-    std::deque<Package> view_queue()const ;
-    virtual Package view_depot() const ;
-
-
+    virtual std::vector<Package> view_depot()const;
+    QueueType typ();
 
 };
 

@@ -14,19 +14,16 @@
 
 class Storehouse : public IPackageReceiver{
 private:
-    std::list<Package> packages;
-    ReceiverType reciever_type;
+    ReceiverType receiver_type;
     IPackageDepot* packageDepot;
     ElementID id;
 public:
     virtual void receive_package(Package);
-    virtual Package view_depot() const;
+    virtual std::vector<Package> view_depot() const;
     virtual ReceiverType get_receiver_type()const;
     virtual ElementID get_id()const;
-    virtual Package view()const;
-    virtual void push(Package);
-
-    Storehouse(ElementID);
+    Storehouse(ElementID,IPackageDepot *);
+    ~Storehouse();
 
 
 };

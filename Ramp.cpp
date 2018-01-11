@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include "Ramp.h"
-
+#include "Types.h"
 
 
 ElementID Ramp::get_id() const {
@@ -13,6 +13,7 @@ ElementID Ramp::get_id() const {
 
 
 void Ramp::deliver_goods(Time time) {
+    std::cout<<std::endl<<this->get_id().string()<<" ramp evalutaion"<<std::endl;
     if(time.get_int() % delivery_interval.get_int()==0)
         send_package();
 }
