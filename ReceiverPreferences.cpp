@@ -24,14 +24,14 @@ void ReceiverPreferences::add_receiver(IPackageReceiver * new_element) {
 }
 
 void ReceiverPreferences::add_receiver_with_probability(IPackageReceiver* new_element, double new_probability) {
-    for(auto& element : probabilities)
-    {
-        element.second = (1-new_probability)*element.second;
-    }
     if(probabilities.empty())
         probabilities.insert(std::make_pair(new_element,1));
-    else
-        probabilities.insert(std::make_pair(new_element,new_probability));
+    else {
+        for (auto &element : probabilities) {
+            element.second = (1 - new_probability) * element.second;
+        }
+        probabilities.insert(std::make_pair(new_element, new_probability));
+    }
 }
 
 void ReceiverPreferences::remove_receiver(IPackageReceiver * to_delete) {
@@ -43,17 +43,18 @@ void ReceiverPreferences::remove_receiver(IPackageReceiver * to_delete) {
         element.second = (element.second/(1-deleted_preference));
     }
 }
-
 IPackageReceiver *ReceiverPreferences::draw_receiver() {
     int number = probabilities.size();
     int counter =0;
-    srand(time(NULL));
-    int generation_result = rand() % number;
+
+    int generation_result = rand() % 10000;
+    double weight = double(generation_result)/10000;
+    double temp=0;
     for(auto& element : probabilities)
     {
-        if(counter == generation_result)
+        temp+=element.second;
+        if(temp>weight)
             return element.first;
-        counter++;
     }
 
 }

@@ -20,6 +20,7 @@ enum NodeType{
     WORKER_NODE,
     STORAGE_NODE,
     LINK_NODE,
+    PACKAGE,
     EMPTY
 };
 

@@ -21,7 +21,7 @@ private:
 public:
 
     std::list<Ramp>& get_ramps();
-    void add_ramp(Ramp);
+    void add_ramp(Ramp&);
     void remove_ramp(ElementID);
     Ramp* find_ramp(ElementID)  ;
 
@@ -31,7 +31,7 @@ public:
     Worker* find_worker(ElementID)  ;
 
     std::list<Storehouse>& get_storehouses();
-    void add_storehouse(Storehouse);
+    void add_storehouse(Storehouse&);
     void remove_storehouse(ElementID);
     Storehouse* find_storehouse(ElementID)  ;
     IPackageReceiver * find_receiver(ElementID);

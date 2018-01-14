@@ -6,35 +6,34 @@
 #include <iostream>
 #include "Worker.h"
 #include "Types.h"
+#include "PackageQueue.h"
 
-Worker::Worker(ElementID new_id, TimeOffset new_time_offset, IPackageQueue * new_package_queue) {
+Worker::Worker(ElementID new_id, TimeOffset new_time_offset,IPackageQueue* new_queue) {
     id = new_id;
     processing_duration = new_time_offset;
-    queue = new_package_queue;
-    queue_type = queue->get_queue_type();
     currently_processed_package;
+    queue = new_queue;
+    queue_type = new_queue->get_queue_type();
     package_processing__start_time.set(0);
     type=WORKER;
 }
 
 
 void Worker::receive_package(Package new_package) {
-    std::cout<<"RECEIVING package: "<<new_package.get_id().string() <<std::endl;
+    std::cout<<this->get_id().string()<<" RECEIVING package: "<<new_package.get_id().string() <<std::endl;
 
     queue->push(new_package);
-
 
 }
 
 void Worker::do_work(Time time) {
 
     std::cout<<std::endl<< this->get_id().string()<<" evaluation " <<std::endl;
-    std::cout <<(!currently_processed_package.empty())<<" " <<this->package_processing__start_time.get_int()<<" "<<this->get_processing_duration().get_int()<<" "<<time.get_int() <<std::endl;
     if(currently_processed_package.empty())
     {
         if(!(queue->empty())) {
             currently_processed_package.push_back(queue->pop());
-            std::cout <<this->get_id().string()<<" starting to process " <<time.get_int()<<std::endl;
+            std::cout <<this->get_id().string()<<" starting to process " << this->currently_processed_package.front().get_id().string() << " at time: " <<time.get_int()<<std::endl;
 
 
             this->package_processing__start_time.set(time.get_int());
@@ -57,7 +56,7 @@ ReceiverType Worker::get_receiver_type() const {
     return type;
 }
 
-Time Worker::get_package_processing_start_time() {
+Time Worker::get_package_processing_start_time()const {
     return package_processing__start_time;
 }
 
@@ -81,11 +80,23 @@ QueueType Worker::typ() {
 }
 
 Worker::~Worker() {
-delete(queue);
-
+    delete(queue);
 }
 
-void Worker::set_package_processing_start_time(int a) {
-    package_processing__start_time.set(a);
+QueueType Worker::get_queue_type() const {
+    return queue_type;
+}
+
+Worker::Worker(const Worker & worker_old) {
+    this->processing_duration = worker_old.get_processing_duration();
+    this->id = worker_old.get_id();
+    this->queue_type = worker_old.get_queue_type();
+    this->package_processing__start_time = worker_old.get_package_processing_start_time();
+    this->type = worker_old.get_receiver_type();
+    this->currently_processed_package = worker_old.currently_processed_package;
+    PackageQueue* new_queue= new PackageQueue(worker_old.get_queue_type());
+    for(auto element : worker_old.view_depot())
+        new_queue->push(element);
+    this->queue = new_queue;
 
 }

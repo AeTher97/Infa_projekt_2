@@ -15,6 +15,8 @@ NodeType MyString::get_type() {
         return STORAGE_NODE;
     if(this->find("LINK")!=std::string::npos)
         return LINK_NODE;
+    if(this->find("PACKAGE")!=std::string::npos)
+        return PACKAGE;
     return EMPTY;
 }
 

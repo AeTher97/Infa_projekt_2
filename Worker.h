@@ -25,11 +25,12 @@ private:
 public:
     Worker(ElementID,TimeOffset,IPackageQueue*);
     ~Worker();
+    Worker(const Worker&);
     virtual void receive_package(Package);
     void do_work(Time);
+    QueueType get_queue_type() const;
     TimeOffset get_processing_duration()const;
-    Time get_package_processing_start_time();
-    void set_package_processing_start_time(int a);
+    Time get_package_processing_start_time()const;
     virtual ReceiverType get_receiver_type()const ;
     virtual ElementID get_id()const;
     virtual std::vector<Package> view_depot()const;

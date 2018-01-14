@@ -22,7 +22,9 @@ public:
     virtual std::vector<Package> view_depot() const;
     virtual ReceiverType get_receiver_type()const;
     virtual ElementID get_id()const;
-    Storehouse(ElementID,IPackageDepot *);
+    void add_package_depot(IPackageDepot*);
+    Storehouse(ElementID,IPackageDepot*);
+    Storehouse(const Storehouse&);
     ~Storehouse();
 
 

@@ -2,6 +2,7 @@
 // Created by Michał on 09.01.2018.
 //
 
+#include <iostream>
 #include "PackageQueue.h"
 
 PackageQueue::PackageQueue(QueueType type) {
@@ -36,4 +37,9 @@ std::vector<Package> PackageQueue::view() const {
     for(auto element : deque)
         list.push_back(element);
     return list;
+}
+
+PackageQueue::~PackageQueue() {
+    std::cout << "gone" <<std::endl;
+
 }

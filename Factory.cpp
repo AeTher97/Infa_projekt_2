@@ -10,7 +10,7 @@ std::list<Ramp> &Factory::get_ramps() {
     return ramps;
 }
 
-void Factory::add_ramp(Ramp new_ramp) {
+void Factory::add_ramp(Ramp& new_ramp) {
     ramps.push_back(new_ramp);
 }
 
@@ -64,7 +64,7 @@ std::list<Storehouse> &Factory::get_storehouses() {
     return storehouses;
 }
 
-void Factory::add_storehouse(Storehouse new_storehouse) {
+void Factory::add_storehouse(Storehouse& new_storehouse) {
     storehouses.push_back(new_storehouse);
 }
 

@@ -4,15 +4,16 @@
 #include <iostream>
 #include "Storehouse.h"
 #include "Types.h"
+#include "PackageDepot.h"
 
 ElementID Storehouse::get_id() const {
     return id;
 }
 
-Storehouse::Storehouse(ElementID new_id,IPackageDepot* depot) {
+Storehouse::Storehouse(ElementID new_id,IPackageDepot* new_depot) {
     id =new_id;
+    packageDepot = new_depot;
     receiver_type = STOREHOUSE;
-    packageDepot = depot;
 
 }
 
@@ -36,6 +37,23 @@ std::vector<Package> Storehouse::view_depot() const {
 
 Storehouse::~Storehouse() {
     delete(packageDepot);
+
+}
+
+Storehouse::Storehouse(const Storehouse& storehouse_old) {
+    id = storehouse_old.get_id();
+    receiver_type = storehouse_old.get_receiver_type();
+    PackageDepot* new_depot = new PackageDepot();
+    for(auto element : storehouse_old.view_depot())
+    {
+        new_depot->push(element);
+    }
+    packageDepot = new_depot;
+
+}
+
+void Storehouse::add_package_depot(IPackageDepot * new_depot) {
+    packageDepot = new_depot;
 
 }
 

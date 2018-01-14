@@ -34,6 +34,7 @@ public:
     virtual std::vector<Package> view()const ;
     virtual Package pop();
     virtual QueueType get_queue_type();
+    ~PackageQueue();
 
 
 };

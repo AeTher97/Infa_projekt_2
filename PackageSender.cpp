@@ -7,7 +7,7 @@
 
 void PackageSender::send_package() {
     if(!sending_buffer.empty()) {
-        std::cout<< "buffer is not empty... SENDING " <<std::endl;
+        std::cout<< "buffer if full... SENDING " <<std::endl;
         receiver_preferences.draw_receiver()->receive_package(sending_buffer.front());
         sending_buffer.erase(sending_buffer.begin());
     }
