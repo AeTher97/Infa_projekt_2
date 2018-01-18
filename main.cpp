@@ -47,15 +47,42 @@
 
 */
 int main(){
-
+    srand(unsigned(time(NULL)));
     Factory factory =load_factory_structure("D://projekt_inf2/test.txt");
 
+    Time time;
+    time.set(1);
+
     generate_structure_report(factory,"D://projekt_inf2/structure.txt");
-    TimeOffset time = TimeOffset(2);
 
-    std::function <void(Factory&,TimeOffset)> function = [](Factory& fact, TimeOffset time){ return; 0;};
 
-    simulate(factory,time,function);
+
+    save_factory_structure(factory,"D://projekt_inf2/save.txt");
+    std::cout<<std::endl<<"--- SIMULATION START ---"<<std::endl;
+    for(int i =0;i<18;i++) {
+        std::cout << std::endl << " --TURN " << time.get_int()<<" --" << std::endl;
+        for (Ramp& element : factory.get_ramps()) {
+            element.deliver_goods(time);
+
+        }
+        for (Worker& element : factory.get_workers()) {
+            element.do_work(time);
+        }
+
+        if(time.get_int()==18)
+            generate_simulation_turn_report(factory,"D://projekt_inf2/turn.txt",time);
+
+        time.set(time.get_int()+1);
+        sleep(1);
+    }
+
+
+    if(!factory.get_storehouses().front().view_depot().empty())
+    for(auto element : factory.get_storehouses().front().view_depot())
+        std::cout<<element.get_id().string()<<std::endl;
+
+
+    std::cout<<std::endl<<"--- SIMULATION END ---"<<std::endl;
     system("PAUSE");
     return 0;
 }

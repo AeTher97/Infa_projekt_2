@@ -17,7 +17,7 @@ void generate_structure_report(Factory,std::string);
 
 void generate_simulation_turn_report(Factory,std::string,Time);
 
-void simulate(Factory&,TimeOffset,std::function<void(Factory&,TimeOffset)>);
+void simulate(Factory,TimeOffset,std::function<void(Factory&,TimeOffset)>);
 
 
 #endif //PROJEKT_NA_INFORMATYKE_SIMULATION_H

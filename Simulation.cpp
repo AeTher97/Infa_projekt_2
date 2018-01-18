@@ -11,7 +11,6 @@
 #include "Enums.h"
 #include "PackageDepot.h"
 #include <string>
-#include <unistd.h>
 
 Factory load_factory_structure(std::string path) {
     MyString string;
@@ -243,37 +242,6 @@ void generate_simulation_turn_report(Factory factory,std::string path,Time time)
 }
 
 
-void simulate(Factory& factory,TimeOffset time_offset,std::function<void(Factory&,TimeOffset)>){
-    srand(unsigned(time(NULL)));
-    Time time;
-    time.set(1);
-    save_factory_structure(factory,"D://projekt_inf2/save.txt");
-    std::cout<<std::endl<<"--- SIMULATION START ---"<<std::endl;
-    for(int i =0;i<18;i++) {
-        std::cout << std::endl << " --TURN " << time.get_int()<<" --" << std::endl;
-        for (Ramp& element : factory.get_ramps()) {
-            element.deliver_goods(time);
+void simulate(Factory,TimeOffset,std::function<void(Factory&,TimeOffset)>){
 
-        }
-        for (Worker& element : factory.get_workers()) {
-            element.do_work(time);
-        }
-
-        if(time.get_int()==18)
-            generate_simulation_turn_report(factory,"D://projekt_inf2/turn.txt",time);
-
-        time.set(time.get_int()+1);
-        sleep(1);
-    }
-
-    for(auto storage : factory.get_storehouses()) {
-        std::cout << "- STORAGE #" << storage.get_id().string().substr(6,storage.get_id().string().length()) <<" -"<<std::endl;
-        if (!storage.view_depot().empty())
-            for (auto product : storage.view_depot())
-                std::cout << product.get_id().string() << std::endl;
-        else
-            std::cout << "storage empty" << std::endl;
-    }
-
-    std::cout<<std::endl<<"--- SIMULATION END ---"<<std::endl;
 }
